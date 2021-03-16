@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from BasedClass import FactorBasedClass
+from BasedClass.FactorBasedClass import FactorBase
 
-class PerformanceFacotr(FactorBasedClass):
+class PerformanceFacotr(FactorBase):
     @staticmethod
     def rolling_return_daily(return_data, rolling_window):
         annual_factor = 250 / rolling_window

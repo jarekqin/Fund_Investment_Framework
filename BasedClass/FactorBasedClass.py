@@ -1,7 +1,7 @@
 import abc
 import numpy as np
 
-class FactorBaseClass(metaclass=abc.ABCMeta):
+class FactorBase(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def cal_factor(self):
         pass
