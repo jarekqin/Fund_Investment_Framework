@@ -90,13 +90,13 @@ if __name__ == '__main__':
     from WindPy import w
     from chinese_calendar import is_holiday
 
-    w.start()
+    # w.start()
 
-    date = w.tdays(datetime.today()-timedelta(7),datetime.today()).Data[0][-2].date()
+    # date = w.tdays(datetime.today()-timedelta(7),datetime.today()).Data[0][-2].date()
 
     spring_holiday = pd.period_range('2021-02-11', '2021-02-17', freq='1D')
     spring_holiday = [x.to_timestamp().date() for x in spring_holiday]
-    # date=datetime(2020,12,31).date()
+    date=datetime(2021,4,2).date()
     #
     # while date<(datetime.today()).date():
     #     if date.isoweekday() in [6,7]:
@@ -121,7 +121,7 @@ if __name__ == '__main__':
             continue
         while True:
             sz_data = CHINAEXCHANGERZRQ.get_data_from_exchange(date=date, ex_name='sz')
-            if sz_data.shape[0]==0 or sz_data is None:
+            if sz_data is None or sz_data.shape[0]==0:
                 print('深圳%s数据抓取完成' % date.strftime('%Y-%m-%d'))
                 break
             else:
