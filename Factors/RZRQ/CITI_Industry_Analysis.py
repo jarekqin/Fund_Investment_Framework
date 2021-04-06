@@ -116,8 +116,8 @@ class CitiIndustryAnalysis:
     def _solve_RZRQ(self, per_industry_stocks_dict, data_source = 'rq',
                     sz_path = 'H:\\RZRQ_result_csv\\sz', sh_path = 'H:\\RZRQ_result_csv\\sh',
                     start_date = None, end_date = None):
+        start_date,end_date=pd.to_datetime(start_date),pd.to_datetime(end_date)
         RZRQ_history = pd.DataFrame()
-        col_list = []
         for key in per_industry_stocks_dict:
             if data_source == 'rq':
                 temp = rq.get_securities_margin(per_industry_stocks_dict[key], start_date = start_date,
@@ -139,13 +139,8 @@ class CitiIndustryAnalysis:
                         file_list1.append(os.path.join(root1, file1))
                         file_list2.append(os.path.join(root2, file2))
                 # 提取最大日期下的文件
-                file1_date = max([x.split('\\')[-1].split('_')[0] for x in file_list1])
-                file2_date = max([x.split('\\')[-1].split('_')[0] for x in file_list2])
-                if file1_date != file2_date:
-                    raise ValueError('深圳交易数据与上海交易所数据不一致!')
-                else:
-                    file1_path = [x for x in file_list1 if file1_date in x]
-                    file2_path = [x for x in file_list2 if file2_date in x]
+                file1_path = [x for x in file_list1 if end_date in x]
+                file2_path = [x for x in file_list2 if end_date in x]
 
                 temp = pd.DataFrame()
                 for path in file1_path + file2_path:
@@ -259,7 +254,7 @@ class CitiIndustryAnalysis:
             height1 = margin_history_day_diff.loc[name1] / 1e8
             # height2 = total_history_pct.loc[name] * 100 - 0.6 if total_history_pct.loc[name] < 0 else \
             #     total_history_pct.loc[name] * 100 + 0.2
-            height2 = margin_history_day_diff.loc[name1] / 1e8 - 0.2
+            height2 = margin_history_day_diff.loc[name1] / 1e8 - 10
             num1 = str((margin_history_day_diff.loc[name1] / 1e8).round(1))
             num2 = str((short_history_day_diff.loc[name1] / 1e8).round(1))
             # print(name, num1, num2)
@@ -499,7 +494,7 @@ if __name__ == '__main__':
 
     # 单独执行
     citi_model = CitiIndustryAnalysis()
-    citi_model.main(start_date = '2021-03-30')
+    citi_model.main(start_date = '2021-03-30',end_date='2021-04-02')
     # citi_manager = JobManager()
     # citi_model.register_event(event_bus=citi_manager.event_bus, job_uuid=None, debug=True)
     # citi_manager.event_bus.event_queue_reload(EVENT.AM0930)
