@@ -1,6 +1,5 @@
 from WindPy import w
 import rqdatac as rq
-from rqdatac import query, fundamentals
 
 import pandas as pd
 import numpy as np
@@ -15,7 +14,6 @@ from datetime import datetime
 
 import seaborn as sns
 
-from omk.interface import AbstractJob
 from omk.core.vendor.RQData import RQData
 
 import os
@@ -494,7 +492,7 @@ if __name__ == '__main__':
 
     # 单独执行
     citi_model = CitiIndustryAnalysis()
-    citi_model.main(start_date = '2021-03-30',end_date='2021-04-02')
+    citi_model.main(start_date = '2021-04-07',end_date='2021-04-07')
     # citi_manager = JobManager()
     # citi_model.register_event(event_bus=citi_manager.event_bus, job_uuid=None, debug=True)
     # citi_manager.event_bus.event_queue_reload(EVENT.AM0930)

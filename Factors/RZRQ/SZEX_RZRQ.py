@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
     spring_holiday = pd.period_range('2021-02-11', '2021-02-17', freq='1D')
     spring_holiday = [x.to_timestamp().date() for x in spring_holiday]
-    date=datetime(2021,4,2).date()
+    date=datetime(2021,4,7).date()
     #
     # while date<(datetime.today()).date():
     #     if date.isoweekday() in [6,7]:
