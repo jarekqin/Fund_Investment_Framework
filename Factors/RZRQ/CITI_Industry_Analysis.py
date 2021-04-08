@@ -1,5 +1,6 @@
 from WindPy import w
 import rqdatac as rq
+from rqdatac import query, fundamentals
 
 import pandas as pd
 import numpy as np
@@ -14,6 +15,7 @@ from datetime import datetime
 
 import seaborn as sns
 
+from omk.interface import AbstractJob
 from omk.core.vendor.RQData import RQData
 
 import os
@@ -114,7 +116,7 @@ class CitiIndustryAnalysis:
     def _solve_RZRQ(self, per_industry_stocks_dict, data_source = 'rq',
                     sz_path = 'H:\\RZRQ_result_csv\\sz', sh_path = 'H:\\RZRQ_result_csv\\sh',
                     start_date = None, end_date = None):
-        start_date,end_date=pd.to_datetime(start_date),pd.to_datetime(end_date)
+        start_date, end_date = pd.to_datetime(start_date), pd.to_datetime(end_date)
         RZRQ_history = pd.DataFrame()
         for key in per_industry_stocks_dict:
             if data_source == 'rq':
@@ -127,7 +129,7 @@ class CitiIndustryAnalysis:
                 temp3 = pd.concat([temp3, temp4], axis = 1)
                 temp3.columns = ['%s_margin_balance' % key, '%s_short_balance' % key, '%s_total_balance' % key]
                 RZRQ_history = pd.concat([RZRQ_history, temp3], axis = 1)
-            # 此处修改成excel
+            # 此处修改成excel-->读取数据方式要修改
             elif data_source == 'excel':
                 # 分别获取上海和深圳两融最近一次的文件夹文件
                 file_list1 = []
@@ -137,8 +139,8 @@ class CitiIndustryAnalysis:
                         file_list1.append(os.path.join(root1, file1))
                         file_list2.append(os.path.join(root2, file2))
                 # 提取最大日期下的文件
-                file1_path = [x for x in file_list1 if end_date in x]
-                file2_path = [x for x in file_list2 if end_date in x]
+                file1_path = [x for x in file_list1 if end_date.strftime('%Y-%m-%d') >= x.split('\\')[-1].split('_')[0]]
+                file2_path = [x for x in file_list2 if end_date.strftime('%Y-%m-%d') >= x.split('\\')[-1].split('_')[0]]
 
                 temp = pd.DataFrame()
                 for path in file1_path + file2_path:
@@ -173,8 +175,8 @@ class CitiIndustryAnalysis:
                     temp2 = pd.concat([temp2, local_temp2], axis = 0)
                 # 重新排序
                 temp2_close = temp2_close[temp2.columns]
-                temp2 = pd.DataFrame(np.sum(temp2.values * temp2_close.values, axis = 1),
-                                     index = temp2_close.index, columns = ['rq_remained_amounts'])
+                temp2 = pd.DataFrame(np.sum(temp2.values * temp2_close.loc[temp2.index].values, axis = 1),
+                                     index = temp2.index, columns = ['rq_remained_amounts'])
                 temp2.index.name = 'as_of_date'
                 temp3 = pd.concat([temp1, temp2], axis = 1)
                 temp4 = pd.DataFrame(temp1.to_numpy() + temp2.to_numpy(), index = temp3.index,
@@ -252,7 +254,7 @@ class CitiIndustryAnalysis:
             height1 = margin_history_day_diff.loc[name1] / 1e8
             # height2 = total_history_pct.loc[name] * 100 - 0.6 if total_history_pct.loc[name] < 0 else \
             #     total_history_pct.loc[name] * 100 + 0.2
-            height2 = margin_history_day_diff.loc[name1] / 1e8 - 10
+            height2 = margin_history_day_diff.loc[name1] / 1e8 - 0.2
             num1 = str((margin_history_day_diff.loc[name1] / 1e8).round(1))
             num2 = str((short_history_day_diff.loc[name1] / 1e8).round(1))
             # print(name, num1, num2)
@@ -272,8 +274,8 @@ class CitiIndustryAnalysis:
         ax1.set_ylabel('行业涨跌幅 单位：%')
 
         total_history_diff = \
-        RZRQ_history.loc[: pd.to_datetime(specify_date).strftime('%Y-%m-%d'), useful_col1].iloc[-2:, :].diff().iloc[
-            -1].sum()
+            RZRQ_history.loc[: pd.to_datetime(specify_date).strftime('%Y-%m-%d'), useful_col1].iloc[-2:, :].diff().iloc[
+                -1].sum()
         plt.title(str('中信一级行业%s' % pd.to_datetime(specify_date).strftime('%Y-%m-%d')) +
 
                   str('两融余额变化%.1f' % (total_history_diff / 1e8)) + ' ' +
@@ -467,8 +469,7 @@ class CitiIndustryAnalysis:
                 end_date = (datetime.today() - timedelta(1)).strftime('%Y-%m-%d')
             # end_date='20210106'
             last_day = (datetime.today() - timedelta(10)).strftime('%Y-%m-%d')
-            # end_date = RQData.get_trading_dates(last_day, end_date)[-1]
-            end_date = datetime.today()
+            end_date = RQData.get_trading_dates(last_day, end_date)[-1]
             if end_date.isoweekday() == 7:
                 end_date -= timedelta(3)
                 # end_date = RQData.get_trading_dates(last_day, end_date)[-2]
@@ -492,7 +493,7 @@ if __name__ == '__main__':
 
     # 单独执行
     citi_model = CitiIndustryAnalysis()
-    citi_model.main(start_date = '2021-04-07',end_date='2021-04-07')
+    citi_model.main(start_date = '2021-02-02')
     # citi_manager = JobManager()
     # citi_model.register_event(event_bus=citi_manager.event_bus, job_uuid=None, debug=True)
     # citi_manager.event_bus.event_queue_reload(EVENT.AM0930)

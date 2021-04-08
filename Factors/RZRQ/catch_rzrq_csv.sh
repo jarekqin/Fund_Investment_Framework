@@ -8,25 +8,25 @@ file_end="sz_rzrq_data.csv"
 file_end2="sh_rzrq_data.xls"
 
 
-WEEK_DAY=$(date +%w)
+#WEEK_DAY=$(date +%w)
+#
+#if (($WEEK_DAY == 1));
+#then
+#  startDay=$(date -d "now -3day" +%Y-%m-%d)
+#  startDay=$(date -d "$startDay" +%s)
+#  endDay=$(date -d "now -3 day" +%Y-%m-%d)
+#  endDay=$(date -d "now -3 day" +%s)
+#else
+#  startDay=$(date -d "now -1 day" +%Y-%m-%d)
+#  startDay=$(date -d "$startDay" +%s)
+#  endDay=$(date -d "now -1 day" +%Y-%m-%d)
+#  endDay=$(date -d "now -1 day" +%s)
+#fi
 
-if (($WEEK_DAY == 1));
-then
-  startDay=$(date -d "now -3day" +%Y-%m-%d)
-  startDay=$(date -d "$startDay" +%s)
-  endDay=$(date -d "now -3 day" +%Y-%m-%d)
-  endDay=$(date -d "now -3 day" +%s)
-else
-  startDay=$(date -d "now -1 day" +%Y-%m-%d)
-  startDay=$(date -d "$startDay" +%s)
-  endDay=$(date -d "now -1 day" +%Y-%m-%d)
-  endDay=$(date -d "now -1 day" +%s)
-fi
-
-#startDay=$(date -d "2021-02-10" +%Y-%m-%d)
-#startDay=$(date -d "$startDay" +%s)
-#endDay=$(date -d "2021-02-10" +%Y-%m-%d)
-#endDay=$(date -d "$endDay" +%s)
+startDay=$(date -d "2021-04-06" +%Y-%m-%d)
+startDay=$(date -d "$startDay" +%s)
+endDay=$(date -d "2021-04-06" +%Y-%m-%d)
+endDay=$(date -d "$endDay" +%s)
 
 root="H:\\RZRQ_csv\\sz\\"
 root2="H:\\RZRQ_csv\\sh\\"
