@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from omk.utils.const import TIME
 from omk.core.vendor.RQData import RQData
 
-from Factors.Performance_Factor import PerformanceFacotr
+from Factors.PerformanceFactor.Performance_Factor import PerformanceFacotr
 from WindPy import w
 
 
