@@ -45,18 +45,24 @@ class SingalFactorBackTesting:
             raise ValueError('Wrong data_source type!')
         return data.pct_change()
 
-    def _back_testing(self, original_data, taking_date=None, pre_order=0.1):
-        if taking_date is None:
-            # if taking_date is None, then we will take today as basic variable
-            taking_date =datetime.today().strftime('%Y-%m-%d')
-        else:
-            taking_date = pd.to_datetime(taking_date).strftime('%Y-%m-%')
-        fund_taken_data = original_data.loc[taking_date].sort_values(ascending=False)
-        pre_fund_id=fund_taken_data.iloc[:int(fund_taken_data.shape[0]*pre_order)]
+    def _back_testing(self, original_data, taken_date=None,pre_order=0.1,
+                      test_type='drawdown',rolling_date=20):
+        if test_type=='drawdown':
+            fund_taken_data = PerformanceFacotr.rolling_maxDrawDown_daily(original_data,rolling_date)
+        if taken_date is None:
+            fund_taken_data=fund_taken_data.iloc[-1]
+
+        fund_taken_data=fund_taken_data.replace(0,np.nan).dropna().sort_values(ascending=False)
+        fund_taken_data = fund_taken_data.iloc[:int(fund_taken_data.shape[0] * pre_order)]
+        return fund_taken_data
 
     def main(self, data_source, end_date=None, backward_days=30):
         original_data = self._get_data(data_source, end_date, backward_days)
+        ordered_fund_list = self._back_testing(original_data,pre_order=0.1)
+        return ordered_fund_list
 
 
 if __name__ == '__main__':
-    pass
+    model = SingalFactorBackTesting('return', 30)
+    ordered_fund_list=model.main('wind', '2021-04-09')
+    print(ordered_fund_list)
