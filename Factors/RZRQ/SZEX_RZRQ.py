@@ -96,7 +96,12 @@ if __name__ == '__main__':
 
     spring_holiday = pd.period_range('2021-02-11', '2021-02-17', freq='1D')
     spring_holiday = [x.to_timestamp().date() for x in spring_holiday]
-    date=(datetime.today()-timedelta(1)).date()
+    if datetime.today().isoweekday() not in [1,6,7]:
+        date=(datetime.today()-timedelta(1)).date()
+    elif datetime.today().isoweekday()==1:
+        date = (datetime.today() - timedelta(3)).date()
+    else:
+        print('周末!不跑!')
     #
     # while date<(datetime.today()).date():
     #     if date.isoweekday() in [6,7]:
