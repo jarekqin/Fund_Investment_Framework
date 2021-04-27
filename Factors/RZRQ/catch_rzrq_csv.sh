@@ -23,9 +23,9 @@ else
   endDay=$(date -d "now -1 day" +%s)
 fi
 
-#startDay=$(date -d "2021-04-06" +%Y-%m-%d)
+#startDay=$(date -d "2021-04-22" +%Y-%m-%d)
 #startDay=$(date -d "$startDay" +%s)
-#endDay=$(date -d "2021-04-06" +%Y-%m-%d)
+#endDay=$(date -d "2021-04-22" +%Y-%m-%d)
 #endDay=$(date -d "$endDay" +%s)
 
 root="H:\\RZRQ_csv\\sz\\"

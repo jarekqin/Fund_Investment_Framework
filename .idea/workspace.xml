@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e532282d-ea43-46fe-aaf2-a214f74c4506" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/BackTesting/fund_sigal_testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackTesting/fund_sigal_testing.py" afterDir="false" />
+    <list default="true" id="e532282d-ea43-46fe-aaf2-a214f74c4506" name="Default Changelist" comment="add macro analysis framework">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Fund_Investment_Framework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Fund_Investment_Framework.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Factors/RZRQ/catch_rzrq_csv.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Factors/RZRQ/catch_rzrq_csv.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jarvis_xmind_auto/daily_weekly_auto.py" beforeDir="false" afterPath="$PROJECT_DIR$/jarvis_xmind_auto/daily_weekly_auto.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Factors/RZRQ/catch_rzrq_csv.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Factors/RZRQ/SZEX_RZRQ.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1p3cjNZ8ESn545eZ43JOMcMWPZj" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,8 +66,9 @@
     <property name="GitStage.ChangesTree.GroupingKeys" value="directory&#10;module&#10;repository" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Jarvis" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -73,19 +82,41 @@
       <recent name="D:\Fund_Investment_Framework" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.omaka_industry_func_new">
-    <configuration name="SZEX_RZRQ" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Fund_Investment_Framework" />
+  <component name="RunManager" selected="Python.CITI_Industry_Analysis">
+    <configuration name="CITI_Industry_Analysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\jarekqin\anaconda3\envs\nlp37\python.exe" />
+      <option name="SDK_HOME" value="D:\anaconda\envs\nlp37\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Factors/RZRQ" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Factors/RZRQ/CITI_Industry_Analysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SZEX_RZRQ" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\anaconda\envs\nlp37\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Factors/RZRQ" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Factors/RZRQ/SZEX_RZRQ.py" />
       <option name="PARAMETERS" value="" />
@@ -133,11 +164,18 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.omaka_industry_func_new" />
+      <item itemvalue="Python.SZEX_RZRQ" />
+      <item itemvalue="Python.CITI_Industry_Analysis" />
+      <item itemvalue="Shell Script.catch_rzrq_csv.sh" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.omaka_industry_func_new" />
-        <item itemvalue="Shell Script.catch_rzrq_csv.sh" />
+        <item itemvalue="Python.CITI_Industry_Analysis" />
         <item itemvalue="Python.SZEX_RZRQ" />
+        <item itemvalue="Shell Script.catch_rzrq_csv.sh" />
+        <item itemvalue="Python.omaka_industry_func_new" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +209,14 @@
       <workItem from="1618501228825" duration="215000" />
       <workItem from="1618528357166" duration="663000" />
       <workItem from="1619017704556" duration="349000" />
+      <workItem from="1619232359965" duration="422000" />
+      <workItem from="1619277039480" duration="260000" />
+      <workItem from="1619277313088" duration="15000" />
+      <workItem from="1619277514767" duration="355000" />
+      <workItem from="1619420702972" duration="507000" />
+      <workItem from="1619450233330" duration="103000" />
+      <workItem from="1619450366831" duration="457000" />
+      <workItem from="1619501271994" duration="2182000" />
     </task>
     <task id="LOCAL-00001" summary="add rzrq relative files">
       <created>1617567539114</created>
@@ -247,7 +293,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="add macro analysis framework" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fund_Investment_Framework$SZEX_RZRQ.coverage" NAME="SZEX_RZRQ Coverage Results" MODIFIED="1617896952756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Factors/RZRQ" />
+    <SUITE FILE_PATH="coverage/Fund_Investment_Framework$runing_rzrq_related_files.coverage" NAME="runing_rzrq_related_files Coverage Results" MODIFIED="1618928223275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Fund_Investment_Framework$omaka_industry_func_new.coverage" NAME="omaka_industry_func_new Coverage Results" MODIFIED="1618500951221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Factors/RZRQ" />
+    <SUITE FILE_PATH="coverage/Fund_Investment_Framework$fund_signal_testing.coverage" NAME="fund_signal_testing Coverage Results" MODIFIED="1618241712784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fund_Investment_Framework$CITI_Industry_Analysis.coverage" NAME="CITI_Industry_Analysis Coverage Results" MODIFIED="1619501682485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Factors/RZRQ" />
+    <SUITE FILE_PATH="coverage/Fund_Investment_Framework$SZEX_RZRQ.coverage" NAME="SZEX_RZRQ Coverage Results" MODIFIED="1619501676390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Factors/RZRQ" />
   </component>
 </project>
