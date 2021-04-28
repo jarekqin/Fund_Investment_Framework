@@ -837,7 +837,7 @@ class MorningAfterMetting:
 
     @staticmethod
     def domestic_insurance_index(end_date):
-        wind_code=['601318.SH','601601.SH','000001.SH']
+        wind_code=['601318.SH','601601.SH','000016.SH']
         end_date=pd.to_datetime(end_date)
         start_date=pd.to_datetime(datetime(end_date.year-1,end_date.month,end_date.day))
         temp_data=w.wsd("%s" % ','.join([x for x in wind_code]),
@@ -846,7 +846,7 @@ class MorningAfterMetting:
 
         data=pd.DataFrame(np.transpose(temp_data.Data),columns=temp_data.Codes,
                           index=temp_data.Times)/100
-        data['index_value']=(data['601318.SH']*0.7+data['601601.SH']*0.3)-data['000001.SH']
+        data['index_value']=(data['601318.SH']*0.7+data['601601.SH']*0.3)-data['000016.SH']
         data['Close']=(data['index_value']+1).cumprod()
 
         # 做出模拟K线的
