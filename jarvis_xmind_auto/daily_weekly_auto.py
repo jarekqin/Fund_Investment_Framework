@@ -34,8 +34,8 @@ mpl.rcParams['axes.unicode_minus'] = False
 sns.set(font_scale=1.5, font='SimHei')
 warnings.filterwarnings("ignore")
 
-# based_file = FOLDER.Syn_save
-based_file = 'H:\\'
+based_file = FOLDER.Syn_save
+# based_file = 'H:\\'
 my_fred_api_key = '7e41a8c76559d6eed6b02fbeccd136fd'
 
 
@@ -59,7 +59,7 @@ class MorningAfterMetting:
         #                            axis=0)
         # final_data = final_data[final_data.wind_code.str.contains(filter_contracts2) == False]
         # for index, code in zip(final_data.wind_code.index.to_list(),
-        #                        final_data.wind_code.to_list()):
+        #                          final_data.wind_code.to_list()):
         #     if code.split('.')[0].rfind('E') == len(code.split('.')[0]) - 1:
         #         final_data.wind_code[index] = '.'.join([code.split('.')[0][:-1], code.split('.')[-1]])
         #     else:
@@ -87,7 +87,9 @@ class MorningAfterMetting:
         returned_dict.update({'NQ=F': '纳斯达克期货'}),
         returned_dict.update({'^N225': '日经指数'}),
         returned_dict.update({'^STOXX50E': '斯托克50'}),
-        returned_dict.update({'CNH=X': '美元兑换离岸人民币'})
+        returned_dict.update({'CNH=X': '美元兑换离岸人民币'}),
+        returned_dict.update({'JPY=X': '日元兑换离岸人民币'})
+
 
         return returned_dict
 
@@ -125,6 +127,7 @@ class MorningAfterMetting:
             data = pd.DataFrame(np.transpose(temp.Data), index=temp.Times, columns=temp.Fields).dropna()
             data.index = pd.to_datetime(data.index)
             plot_data = data.loc[(end_date - timedelta(120)):]
+            data.columns = data.columns.str.upper()
         else:
             data = df[['Open', 'High', 'Low', 'Close']]
             data.columns = data.columns.str.upper()
@@ -869,12 +872,10 @@ class MorningAfterMetting:
                                                                             period, interval)
 
         # plot candle plots1
-        # code_list = MorningAfterMetting.get_wind_k_plot_code(end_date)
         if datetime.now().hour > 6 and datetime.now().hour < 16:
             # code_list = {'USDX.FX': '美元指数', 'USDCNH.FX': '美元兑换离岸人名币', 'SX5E.GI': '斯托克50欧元'}
             code_list = {'USDX.FX': '美元指数','USDCNH.FX': '美元兑换离岸人民币',
-                         'BTC.CME':'比特币期货','CNYJPY.FX':'人民币兑换日元汇率',
-                         'CA00.LME':'连续伦敦铜','C.DCE':'玉米'
+                         'BTC.CME':'比特币期货','CA00.LME':'连续伦敦铜'
                          }
             for code in code_list:
                 print(code)
@@ -886,6 +887,7 @@ class MorningAfterMetting:
 
         if datetime.now().hour >= 16:
             code_list = {'T2106.CFE': 'T2106', 'TS2106.CFE': 'TS2106'}
+            # code_list = MorningAfterMetting.get_wind_k_plot_code(end_date)
             # code_list = [x for x in code_list if 'T%s' % str(end_date.year)[-2:] in x
             #              or 'TS%s' % str(end_date.year)[-2:] in x]
             for code in code_list:
@@ -959,6 +961,17 @@ class MorningAfterMetting:
                                                        ((data.close[-1] - data.loc[(end_date-timedelta(2)).strftime('%Y-%m-%d')]
                                                          .close[-1]) / data.loc[(end_date-timedelta(2)).strftime('%Y-%m-%d')] .close[-1]) * 100,
                                                        plot_col='close')
+
+        if datetime.now().hour >= 16:
+            code_list = {'C.DCE': '玉米'}
+            for code in code_list:
+                print(code)
+                MorningAfterMetting.plot_candle(wind_code=code, contract_name=code_list[code],
+                                                start_date=datetime(end_date.year - 1, end_date.month,
+                                                                    end_date.day).strftime(
+                                                    '%Y-%m-%d'),
+                                                end_date=(end_date + timedelta(1)).strftime('%Y-%m-%d'))
+
 
         # plot candle plots2
         if datetime.now().hour < 16 and datetime.now().hour >= 6:
